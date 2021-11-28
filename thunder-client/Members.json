@@ -1,0 +1,139 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "Members",
+  "dateExported": "2021-11-28T22:09:07.397Z",
+  "version": "1.1",
+  "folders": [],
+  "requests": [
+    {
+      "containerId": "",
+      "sortNum": 10000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.io)"
+        }
+      ],
+      "colId": "78f01965-d8a7-44e7-ab68-2743dd6f0b5f",
+      "name": "create",
+      "url": "{{baseURL}}/members",
+      "method": "POST",
+      "modified": "2021-11-28T22:01:27.956Z",
+      "created": "2021-11-28T21:56:55.422Z",
+      "_id": "fde3d780-c813-4d27-b2fa-94ff22263a23",
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n    \"birth_date\": \"2021-11-28T17:56:01.567Z\",\n    \"full_name\": \"Teste\",\n    \"club\": \"FLAMA\"\n}",
+        "form": []
+      },
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 20000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.io)"
+        }
+      ],
+      "colId": "78f01965-d8a7-44e7-ab68-2743dd6f0b5f",
+      "name": "findAll",
+      "url": "{{baseURL}}/members",
+      "method": "GET",
+      "modified": "2021-11-28T22:03:10.251Z",
+      "created": "2021-11-28T22:02:09.138Z",
+      "_id": "ce8ecb30-7172-4935-b501-a8a02864ba41",
+      "params": [],
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 30000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.io)"
+        }
+      ],
+      "colId": "78f01965-d8a7-44e7-ab68-2743dd6f0b5f",
+      "name": "findOne",
+      "url": "{{baseURL}}/members/ba932ec3-01ea-4c0f-8c31-0350287d97da",
+      "method": "GET",
+      "modified": "2021-11-28T22:04:16.474Z",
+      "created": "2021-11-28T22:03:27.684Z",
+      "_id": "88a640f3-997b-4e8c-9864-0f1afe07add4",
+      "params": [],
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 35000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.io)"
+        }
+      ],
+      "colId": "78f01965-d8a7-44e7-ab68-2743dd6f0b5f",
+      "name": "update",
+      "url": "{{baseURL}}/members/ba932ec3-01ea-4c0f-8c31-0350287d97da",
+      "method": "PATCH",
+      "modified": "2021-11-28T22:05:49.671Z",
+      "created": "2021-11-28T22:04:45.244Z",
+      "_id": "b6a22360-0f96-473f-a832-8165fa8ac5b2",
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n    \"id\": 33\n}",
+        "form": []
+      },
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 45000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.io)"
+        }
+      ],
+      "colId": "78f01965-d8a7-44e7-ab68-2743dd6f0b5f",
+      "name": "delete",
+      "url": "{{baseURL}}/members/ba932ec3-01ea-4c0f-8c31-0350287d97da",
+      "method": "DELETE",
+      "modified": "2021-11-28T22:08:31.129Z",
+      "created": "2021-11-28T22:08:16.627Z",
+      "_id": "fc651a57-d42e-476e-9f78-5910f5df7e69",
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n    \"id\": 33\n}",
+        "form": []
+      },
+      "tests": []
+    }
+  ]
+}
