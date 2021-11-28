@@ -1,8 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
+enum Club {
+  URSINHOS
+  FAISCA
+  FLAMA
+  TOCHA
+  JV
+  GQ7
+}
+
+model Member {
+  id           String   @id @db.Uuid
+  full_name    String
+  birth_date   DateTime
+  mother_name  String?
+  father_name  String?
+  phone        String?
+  street       String?
+  city         String?
+  neighborhood String?
+  zip_code     String?
+  is_active    Boolean  @default(true)
+  club         Club
 }
