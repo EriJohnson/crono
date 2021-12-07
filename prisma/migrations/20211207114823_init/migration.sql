@@ -29,9 +29,11 @@ CREATE TABLE "member" (
 CREATE TABLE "user" (
     "id" TEXT NOT NULL,
     "full_name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "phone" TEXT,
+    "birth_date" TIMESTAMP(3),
     "club" "Club",
     "role" "Role",
     "is_active" BOOLEAN DEFAULT true,
@@ -40,6 +42,9 @@ CREATE TABLE "user" (
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "user_username_key" ON "user"("username");
