@@ -13,34 +13,51 @@ import { User } from '../entities/user.entity';
 
 export class CreateUserDto extends User {
   @IsNotEmpty()
-  @MinLength(3)
+  @IsString()
+  @MinLength(3, {
+    message:
+      'O nome completo do usuário dever ter pelos menos $constraint1 caracteres.',
+  })
   full_name: string;
 
   @IsNotEmpty()
-  @IsEmail()
+  @IsEmail({}, { message: 'Por favor, digite um email válido' })
   email: string;
 
   @IsNotEmpty()
-  @MinLength(6)
+  @IsString()
+  @MinLength(6, {
+    message: 'O nome de usuário dever ter pelos menos $constraint1 caracteres.',
+  })
   username: string;
 
   @IsNotEmpty()
-  @MinLength(6)
+  @IsString()
+  @MinLength(6, {
+    message: 'A senha deve conter no mínimo $constraint1 caracteres',
+  })
   password: string;
 
   @IsOptional()
-  @IsEnum(Club)
+  @IsEnum(Club, {
+    message:
+      'Você deve escolher um dos clubes: URSINHOS, FAÍSCA, FLAMA, TOCHA, JV OU GQ7.',
+  })
   club: Club;
 
   @IsOptional()
   @IsDateString()
   birth_date: string | Date;
 
-  @IsString()
   @IsOptional()
+  @IsString()
+  @MinLength(11, {
+    message:
+      'O número de telefone deve conter no mínimo $constraint1 caracteres',
+  })
   phone?: string;
 
-  @IsBoolean()
   @IsOptional()
+  @IsBoolean()
   is_active?: boolean;
 }

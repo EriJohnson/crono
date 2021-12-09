@@ -1,8 +1,4 @@
-import {
-  ConflictException,
-  Injectable,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from 'src/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -13,6 +9,7 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   private readonly _userData = {
+    id: true,
     full_name: true,
     club: true,
     phone: true,
@@ -23,18 +20,8 @@ export class UsersService {
     updated_at: true,
   };
 
-  async create(data: CreateUserDto) {
-    try {
-      await this.prisma.user.create({ data });
-    } catch (error) {
-      if (error.code === 'P2002') {
-        const [errorField] = error.meta.target;
-
-        throw new ConflictException(`O ${errorField} já está em uso`);
-      }
-
-      throw new InternalServerErrorException('Erro interno no servidor');
-    }
+  create(data: CreateUserDto) {
+    return this.prisma.user.create({ data });
   }
 
   findAll() {
@@ -42,12 +29,10 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    try {
-      return this.prisma.user.findUnique({
-        where: { id },
-        select: this._userData,
-      });
-    } catch (error) {}
+    return this.prisma.user.findFirst({
+      where: { id },
+      select: this._userData,
+    });
   }
 
   update(id: string, data: UpdateUserDto) {
@@ -59,6 +44,7 @@ export class UsersService {
   }
 
   remove(id: string) {
+    console.log(`id`, id);
     return this.prisma.user.delete({ where: { id } });
   }
 }
