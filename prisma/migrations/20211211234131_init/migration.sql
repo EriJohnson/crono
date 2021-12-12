@@ -33,7 +33,7 @@ CREATE TABLE "user" (
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "phone" TEXT,
-    "birth_date" TIMESTAMP(3),
+    "birth_date" TIMESTAMP(3) NOT NULL,
     "club" "Club",
     "role" "Role",
     "is_active" BOOLEAN DEFAULT true,

@@ -48,18 +48,18 @@ enum Role {
 // posteriormente por usuários que possuírem o roles de "DEACON" ou "DIRECTOR".
 
 model User {
-  id         String    @id @default(uuid())
+  id         String   @id @default(uuid())
   full_name  String
-  email      String    @unique
-  username   String    @unique
+  email      String   @unique
+  username   String   @unique
   password   String
   phone      String?
-  birth_date DateTime?
+  birth_date DateTime
   club       Club?
   role       Role?
-  is_active  Boolean?  @default(true)
-  created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
+  is_active  Boolean? @default(true)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   @@map("user")
 }

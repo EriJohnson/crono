@@ -45,7 +45,7 @@ export class CreateUserDto extends User {
   })
   club: Club;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsDateString()
   birth_date: string | Date;
 
