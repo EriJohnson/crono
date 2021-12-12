@@ -1,46 +1,51 @@
 import { Club } from '@prisma/client';
-import { Member } from '../entities/member.entity';
 import {
   IsBoolean,
+  IsDateString,
   IsEnum,
+  IsInt,
   IsNotEmpty,
+  IsOptional,
   IsString,
   MinLength,
-  IsOptional,
-  IsDateString,
 } from 'class-validator';
+import { Member } from '../entities/member.entity';
 
 export class CreateMemberDto extends Member {
   @IsNotEmpty()
   @MinLength(3)
   full_name: string;
 
-  @IsNotEmpty()
+  @IsOptional()
+  @IsInt()
+  age: number;
+
+  @IsOptional()
   @IsDateString()
   birth_date: string | Date;
 
-  @IsString()
   @IsOptional()
+  @IsString()
   mother_name?: string;
 
-  @IsString()
   @IsOptional()
+  @IsString()
   father_name?: string;
 
-  @IsString()
   @IsOptional()
+  @IsString()
   phone?: string;
 
-  @IsString()
   @IsOptional()
+  @IsString()
   street?: string;
 
-  @IsString()
   @IsOptional()
+  @IsString()
   city?: string;
 
-  @IsString()
   @IsOptional()
+  @IsString()
   neighborhood?: string;
 
   @IsString()

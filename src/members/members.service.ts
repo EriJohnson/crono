@@ -2,25 +2,40 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
+import { Member } from './entities/member.entity';
 
 @Injectable()
 export class MembersService {
   constructor(private prisma: PrismaService) {}
 
   create(data: CreateMemberDto) {
-    return this.prisma.member.create({ data });
+    const member = new Member(data);
+
+    return this.prisma.member.create({ data: member });
   }
 
-  findAll() {
-    return this.prisma.member.findMany();
+  async findAll() {
+    const members = await this.prisma.member.findMany();
+
+    return members.map(memberData => {
+      const member = new Member(memberData);
+
+      return member;
+    });
   }
 
-  findOne(id: string) {
-    return this.prisma.member.findUnique({ where: { id } });
+  async findOne(id: string) {
+    const memberData = await this.prisma.member.findUnique({ where: { id } });
+
+    const member = new Member(memberData);
+
+    return member;
   }
 
-  update(id: string, data: UpdateMemberDto) {
-    return this.prisma.member.update({ where: { id }, data });
+  async update(id: string, data: UpdateMemberDto) {
+    const member = new Member(data);
+
+    return await this.prisma.member.update({ where: { id }, data: member });
   }
 
   remove(id: string) {
