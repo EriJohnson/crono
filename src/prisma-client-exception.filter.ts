@@ -3,39 +3,42 @@ import { BaseExceptionFilter } from '@nestjs/core';
 import { Prisma } from '@prisma/client';
 import { Response } from 'express';
 
-class PrismaException implements Prisma.PrismaClientKnownRequestError {
-  code: string;
-  meta?: { target: string[] };
-  clientVersion: string;
-  get [Symbol.toStringTag](): string {
-    throw new Error('Method not implemented.');
-  }
-  name: string;
-  message: string;
-  stack?: string;
+class PrismaException extends Prisma.PrismaClientKnownRequestError {
+  meta?: { target: string[] } | any;
 }
 
 @Catch(Prisma.PrismaClientKnownRequestError)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   catch(exception: PrismaException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
-
     const response = ctx.getResponse<Response>();
 
-    switch (exception.code) {
-      case 'P2002':
-        const status = HttpStatus.CONFLICT;
-        const [errorField] = exception.meta.target;
+    const { code } = exception;
 
-        response.status(status).json({
-          statusCode: status,
-          message: `Sorry, that ${errorField} already exists!`,
-        });
+    if (code === 'P2002') {
+      const status = HttpStatus.CONFLICT;
+      const [errorField] = exception.meta.target;
 
-        break;
-      default:
-        super.catch(exception, host);
-        break;
+      response.status(status).json({
+        statusCode: status,
+        message: `Sorry, that ${errorField} already exists!`,
+      });
+
+      return;
     }
+
+    if (code === 'P2025') {
+      const status = HttpStatus.NOT_FOUND;
+      const { cause } = exception.meta;
+
+      response.status(status).json({
+        statusCode: status,
+        message: cause,
+      });
+
+      return;
+    }
+
+    super.catch(exception, host);
   }
 }
