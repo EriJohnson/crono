@@ -8,7 +8,8 @@ CREATE TYPE "Role" AS ENUM ('ADMIN', 'DEACON', 'DIRECTOR', 'LEADER');
 CREATE TABLE "member" (
     "id" TEXT NOT NULL,
     "full_name" TEXT NOT NULL,
-    "birth_date" TIMESTAMP(3) NOT NULL,
+    "age" INTEGER NOT NULL,
+    "birth_date" TIMESTAMP(3),
     "mother_name" TEXT,
     "father_name" TEXT,
     "phone" TEXT,
