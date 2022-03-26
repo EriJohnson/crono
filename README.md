@@ -10,19 +10,26 @@ Back end da aplicação do sistema gerenciamento para o OANSE.
 
 ### Docker
 
+
 1. Crie o container docker com a imagem do postgres:
 
 ```bash
 docker run --name jet-black-container -p 5432:5432 -e POSTGRES_PASSWORD=123456 -d postgres
 ```
 
-2. Crie o banco de dados com o comando:
+2. Execute o container docker:
+
+```bash
+docker start jet-black-container
+```
+
+3. Crie o banco de dados com o comando:
 
 ```bash
 docker exec -i jet-black-container psql -U postgres -c "CREATE DATABASE jet_black_db WITH OWNER=postgres;"
 ```
 
-3. Configure o .env:
+4. Configure o .env:
 
 faça uma cópia do arquivo .env.example e renomeie para somente .env e configure as variáveis conforme os dados de configurações de banco, docker etc.
 
