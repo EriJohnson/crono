@@ -1,0 +1,134 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "Users",
+  "dateExported": "2022-03-27T13:58:53.019Z",
+  "version": "1.1",
+  "folders": [],
+  "requests": [
+    {
+      "containerId": "",
+      "sortNum": 10000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "cf19ce4e-bf6c-41c2-ae2d-3e0be590fa1f",
+      "name": "create",
+      "url": "{{baseURL}}/users",
+      "method": "POST",
+      "modified": "2022-03-27T12:42:12.082Z",
+      "created": "2022-03-27T12:22:35.598Z",
+      "_id": "a6e409b9-a5d3-4408-9f92-0a7098ca08fe",
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n    \"full_name\": \"Eri JS Fernandes\",\n    \"username\": \"erijsfernandes\",\n    \"email\": \"eri@gmail.com\",\n    \"password\": \"123456\",\n    \"birth_date\": \"1992-09-07\"\n}",
+        "form": []
+      },
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 20000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "cf19ce4e-bf6c-41c2-ae2d-3e0be590fa1f",
+      "name": "findAll",
+      "url": "{{baseURL}}/users",
+      "method": "GET",
+      "modified": "2022-03-27T13:37:17.187Z",
+      "created": "2022-03-27T13:37:07.121Z",
+      "_id": "19ff66ae-358c-4515-b3c0-9535c36bb06f",
+      "params": [],
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 30000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "cf19ce4e-bf6c-41c2-ae2d-3e0be590fa1f",
+      "name": "findOne",
+      "url": "{{baseURL}}/users/47b22f61-bbc7-40e9-82e5-c4a63bc2234f",
+      "method": "GET",
+      "modified": "2022-03-27T13:38:20.577Z",
+      "created": "2022-03-27T13:37:41.684Z",
+      "_id": "83f873b1-03ac-4a8a-b93b-ffcdf5394ebb",
+      "params": [],
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 40000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "cf19ce4e-bf6c-41c2-ae2d-3e0be590fa1f",
+      "name": "update",
+      "url": "{{baseURL}}/users/47b22f61-bbc7-40e9-82e5-c4a63bc2234f",
+      "method": "PATCH",
+      "modified": "2022-03-27T13:42:17.184Z",
+      "created": "2022-03-27T13:38:46.580Z",
+      "_id": "5563ed6e-6b94-4146-965e-9cf153faa105",
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"full_name\": \"Eri JS Fernandes 3\"\n}",
+        "form": []
+      },
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 50000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "cf19ce4e-bf6c-41c2-ae2d-3e0be590fa1f",
+      "name": "delete",
+      "url": "{{baseURL}}/users/47b22f61-bbc7-40e9-82e5-c4a63bc2234f",
+      "method": "DELETE",
+      "modified": "2022-03-27T13:42:36.736Z",
+      "created": "2022-03-27T13:42:25.080Z",
+      "_id": "67dc5bb1-6af0-4180-95cc-69613f90ee67",
+      "params": [],
+      "tests": []
+    }
+  ]
+}
