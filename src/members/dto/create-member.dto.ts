@@ -22,7 +22,7 @@ export class CreateMemberDto extends Member {
 
   @IsOptional()
   @IsDateString()
-  birth_date: string | Date;
+  birth_date: string;
 
   @IsOptional()
   @IsString()

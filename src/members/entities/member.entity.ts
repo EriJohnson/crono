@@ -4,7 +4,7 @@ export class Member implements Prisma.MemberUncheckedCreateInput {
   id?: string;
   full_name: string;
   age: number;
-  birth_date?: string | Date;
+  birth_date?: string;
   mother_name?: string;
   father_name?: string;
   phone?: string;
