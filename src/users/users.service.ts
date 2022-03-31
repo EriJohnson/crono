@@ -28,15 +28,19 @@ export class UsersService {
     return this.prisma.user.findMany({ select: this._userData });
   }
 
-  async findOne(id: string) {
-    return this.prisma.user.findFirst({
+  findOne(id: string) {
+    return this.prisma.user.findUnique({
       where: { id },
       select: this._userData,
+      rejectOnNotFound: true,
     });
   }
 
-  findByEmail(email: string) {
-    return this.prisma.user.findFirst({ where: { email } });
+  async findByEmail(email: string) {
+    return this.prisma.user.findUnique({
+      where: { email },
+      rejectOnNotFound: true,
+    });
   }
 
   update(id: string, data: UpdateUserDto) {
@@ -48,7 +52,6 @@ export class UsersService {
   }
 
   remove(id: string) {
-    console.log(`id`, id);
     return this.prisma.user.delete({ where: { id } });
   }
 }
