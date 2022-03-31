@@ -8,12 +8,23 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(email: string, pass: string): Promise<any> {
-    const user = await this.usersService.findByEmail(email);
+  //Exclude keys from user
+  private exclude<User, Key extends keyof User>(
+    user: User,
+    ...keys: Key[]
+  ): Omit<User, Key> {
+    for (const key of keys) {
+      delete user[key];
+    }
+    return user;
+  }
+
+  async validateUser(identifier: string, pass: string): Promise<any> {
+    const user = await this.usersService.findByIdentifier(identifier);
 
     if (user && user.password === pass) {
-      const { password, ...result } = user;
-      return result;
+      const userWithoutPassword = this.exclude(user, 'password');
+      return userWithoutPassword;
     }
 
     return null;
