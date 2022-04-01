@@ -7,7 +7,7 @@ class PrismaException extends Prisma.PrismaClientKnownRequestError {
   meta?: { target: string[] } | any;
 }
 
-@Catch()
+@Catch(Prisma.PrismaClientKnownRequestError)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   catch(exception: PrismaException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -39,9 +39,6 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
       return;
     }
 
-    return response.status(404).json({
-      statusCode: 404,
-      message: 'Not found',
-    });
+    super.catch(exception, host);
   }
 }

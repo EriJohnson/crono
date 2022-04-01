@@ -1,6 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import { User } from 'src/users/entities/user.entity';
+import { UsersService } from '../users/users.service';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -19,10 +22,16 @@ export class AuthService {
     return user;
   }
 
-  async validateUser(identifier: string, pass: string): Promise<any> {
+  async validateUser(identifier: string, password: string): Promise<any> {
     const user = await this.usersService.findByIdentifier(identifier);
 
-    if (user && user.password === pass) {
+    if (!user) {
+      throw new NotFoundException();
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (user && isMatch) {
       const userWithoutPassword = this.exclude(user, 'password');
       return userWithoutPassword;
     }
@@ -30,7 +39,7 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any) {
+  async login(user: User) {
     const payload = { email: user.email, sub: user.id };
 
     return {
