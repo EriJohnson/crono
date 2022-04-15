@@ -17,10 +17,10 @@ enum Club {
 }
 
 model Member {
-  id           String    @id @default(uuid())
+  id           String   @id @default(uuid())
   full_name    String
   age          Int
-  birth_date   DateTime?
+  birth_date   String?
   mother_name  String?
   father_name  String?
   phone        String?
@@ -29,10 +29,10 @@ model Member {
   city         String?
   neighborhood String?
   zip_code     String?
-  is_active    Boolean   @default(true)
+  is_active    Boolean  @default(true)
   club         Club
-  created_at   DateTime  @default(now())
-  updated_at   DateTime  @updatedAt
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
 
 
   @@map("member")
@@ -55,7 +55,7 @@ model User {
   username   String   @unique
   password   String
   phone      String?
-  birth_date DateTime
+  birth_date String
   club       Club?
   role       Role?
   is_active  Boolean? @default(true)

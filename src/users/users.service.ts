@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
-
+import { Injectable, NotFoundException } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+
+const SALT_ROUNDS = 10;
 
 @Injectable()
 export class UsersService {
@@ -20,8 +22,13 @@ export class UsersService {
     updated_at: true,
   };
 
-  create(data: CreateUserDto) {
-    return this.prisma.user.create({ data });
+  create(createUserDto: CreateUserDto) {
+    const data: CreateUserDto = {
+      ...createUserDto,
+      password: bcrypt.hashSync(createUserDto.password, SALT_ROUNDS),
+    };
+
+    return this.prisma.user.create({ data, select: this._userData });
   }
 
   findAll() {
@@ -29,9 +36,19 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    return this.prisma.user.findFirst({
+    const user = await this.prisma.user.findUnique({
       where: { id },
       select: this._userData,
+    });
+
+    if (!user) throw new NotFoundException();
+
+    return user;
+  }
+
+  async findByIdentifier(identifier: string) {
+    return this.prisma.user.findFirst({
+      where: { OR: [{ email: identifier }, { username: identifier }] },
     });
   }
 
@@ -44,7 +61,6 @@ export class UsersService {
   }
 
   remove(id: string) {
-    console.log(`id`, id);
     return this.prisma.user.delete({ where: { id } });
   }
 }

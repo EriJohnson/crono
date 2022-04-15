@@ -47,7 +47,7 @@ export class CreateUserDto extends User {
 
   @IsNotEmpty()
   @IsDateString()
-  birth_date: string | Date;
+  birth_date: string;
 
   @IsOptional()
   @IsString()

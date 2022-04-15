@@ -1,3 +1,3 @@
 {
-  "conventionalCommits.scopes": ["member", "user"]
+  "conventionalCommits.scopes": ["member", "user", "thunder-client", "auth"]
 }

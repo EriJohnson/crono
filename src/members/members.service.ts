@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
@@ -26,6 +26,8 @@ export class MembersService {
 
   async findOne(id: string) {
     const memberData = await this.prisma.member.findUnique({ where: { id } });
+
+    if (!memberData) throw new NotFoundException();
 
     const member = new Member(memberData);
 

@@ -13,10 +13,9 @@ async function bootstrap() {
     }),
   );
 
-  // Filter to handle Prisma Client Errors
   const { httpAdapter } = app.get(HttpAdapterHost);
-  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
 
-  await app.listen(3000);
+  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter)),
+    await app.listen(3000);
 }
 bootstrap();
