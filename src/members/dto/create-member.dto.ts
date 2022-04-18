@@ -14,7 +14,7 @@ import { Member } from '../entities/member.entity';
 export class CreateMemberDto extends Member {
   @IsNotEmpty()
   @MinLength(3)
-  full_name: string;
+  fullName: string;
 
   @IsOptional()
   @IsInt()
@@ -22,15 +22,15 @@ export class CreateMemberDto extends Member {
 
   @IsOptional()
   @IsDateString()
-  birth_date: string;
+  birthDate?: string;
 
   @IsOptional()
   @IsString()
-  mother_name?: string;
+  motherName?: string;
 
   @IsOptional()
   @IsString()
-  father_name?: string;
+  fatherName?: string;
 
   @IsOptional()
   @IsString()
@@ -50,11 +50,11 @@ export class CreateMemberDto extends Member {
 
   @IsString()
   @IsOptional()
-  zip_code?: string;
+  zipCode?: string;
 
   @IsBoolean()
   @IsOptional()
-  is_active?: boolean;
+  isActive?: boolean;
 
   @IsEnum(Club)
   club: Club;

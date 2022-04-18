@@ -12,14 +12,14 @@ export class UsersService {
 
   private readonly _userData = {
     id: true,
-    full_name: true,
+    fullName: true,
     club: true,
     phone: true,
-    birth_date: true,
-    is_active: true,
+    birthDate: true,
+    isActive: true,
     role: true,
-    created_at: true,
-    updated_at: true,
+    createdAt: true,
+    updatedAt: true,
   };
 
   create(createUserDto: CreateUserDto) {

@@ -18,7 +18,7 @@ export class CreateUserDto extends User {
     message:
       'O nome completo do usuário dever ter pelos menos $constraint1 caracteres.',
   })
-  full_name: string;
+  fullName: string;
 
   @IsNotEmpty()
   @IsEmail({}, { message: 'Por favor, digite um email válido' })
@@ -47,7 +47,7 @@ export class CreateUserDto extends User {
 
   @IsNotEmpty()
   @IsDateString()
-  birth_date: string;
+  birthDate?: string;
 
   @IsOptional()
   @IsString()
@@ -59,5 +59,5 @@ export class CreateUserDto extends User {
 
   @IsOptional()
   @IsBoolean()
-  is_active?: boolean;
+  isActive?: boolean;
 }
