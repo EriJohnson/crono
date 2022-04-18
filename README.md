@@ -57,6 +57,14 @@ yarn start:prod
 
 ## Sugestões
 
+[Prisma Studio](https://www.prisma.io/studio): Uma inferface visual para visualizar os dados do banco de dados.
+
+Rode o comando abaixo ou então faça o download do aplicativo para o seu sistema:
+
+```bash
+npx prisma studio
+```
+
 [pgAdmin](https://www.pgadmin.org/download/pgadmin-4-apt/): Um gerenciador de banco dados visual para postgres obs.: só precisa instalar a versão de desktop com o comando:
 
 ```bash
