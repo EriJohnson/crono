@@ -57,7 +57,7 @@ yarn start:prod
 
 ## Sugestões
 
-[Prisma Studio](https://www.prisma.io/studio): Uma inferface visual para visualizar os dados do banco de dados.
+[Prisma Studio](https://www.prisma.io/studio): Uma interface visual para gerenciar o banco de dados.
 
 Rode o comando abaixo ou então faça o download do aplicativo para o seu sistema:
 
