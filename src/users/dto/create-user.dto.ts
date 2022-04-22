@@ -1,7 +1,6 @@
 import { Club } from '.prisma/client';
 import {
   IsBoolean,
-  IsDateString,
   IsEmail,
   IsEnum,
   IsNotEmpty,
@@ -46,8 +45,8 @@ export class CreateUserDto extends User {
   club: Club;
 
   @IsNotEmpty()
-  @IsDateString()
-  birthDate?: string;
+  @IsString()
+  birthdate?: string;
 
   @IsOptional()
   @IsString()

@@ -3,6 +3,7 @@ import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
 
 const SALT_ROUNDS = 10;
 
@@ -15,7 +16,7 @@ export class UsersService {
     fullName: true,
     club: true,
     phone: true,
-    birthDate: true,
+    birthdate: true,
     isActive: true,
     role: true,
     createdAt: true,

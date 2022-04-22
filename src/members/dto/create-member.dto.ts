@@ -21,8 +21,8 @@ export class CreateMemberDto extends Member {
   age: number;
 
   @IsOptional()
-  @IsDateString()
-  birthDate?: string;
+  @IsString()
+  birthdate?: string;
 
   @IsOptional()
   @IsString()

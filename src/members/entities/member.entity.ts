@@ -4,7 +4,7 @@ export class Member implements Prisma.MemberUncheckedCreateInput {
   id?: string;
   fullName: string;
   age: number;
-  birthDate?: string;
+  birthdate?: string;
   motherName?: string;
   fatherName?: string;
   phone?: string;
@@ -25,9 +25,9 @@ export class Member implements Prisma.MemberUncheckedCreateInput {
   }
 
   private calculateAge(): number {
-    if (!this.birthDate) return this.age;
+    if (!this.birthdate) return this.age;
 
-    const formattedBirthDate = dayjs(this.birthDate);
-    return dayjs().diff(formattedBirthDate, 'years');
+    const formattedBirthdate = dayjs(this.birthdate);
+    return dayjs().diff(formattedBirthdate, 'years');
   }
 }

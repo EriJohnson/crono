@@ -20,7 +20,7 @@ model Member {
   id           String   @id @default(uuid())
   fullName     String   @map("full_name")
   age          Int
-  birthDate    String?  @map("birth_date")
+  birthdate    String?
   motherName   String?  @map("mother_name")
   fatherName   String?  @map("father_name")
   phone        String?
@@ -55,7 +55,7 @@ model User {
   username  String   @unique
   password  String
   phone     String?
-  birthDate String?  @map("birth_date")
+  birthdate String?
   club      Club?
   role      Role?
   isActive  Boolean  @default(true) @map("is_active")

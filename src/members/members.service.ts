@@ -8,8 +8,8 @@ import { Member } from './entities/member.entity';
 export class MembersService {
   constructor(private prisma: PrismaService) {}
 
-  create(data: CreateMemberDto) {
-    const member = new Member(data);
+  create(createMemberDto: CreateMemberDto) {
+    const member = new Member(createMemberDto);
 
     return this.prisma.member.create({ data: member });
   }
