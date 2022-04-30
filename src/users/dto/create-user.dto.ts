@@ -1,11 +1,16 @@
 import { Club } from '.prisma/client';
 import {
   IsBoolean,
+  IsDate,
+  IsDateString,
   IsEmail,
   IsEnum,
+  IsISO8601,
   IsNotEmpty,
   IsOptional,
   IsString,
+  Length,
+  MaxLength,
   MinLength,
 } from 'class-validator';
 import { User } from '../entities/user.entity';
@@ -13,9 +18,13 @@ import { User } from '../entities/user.entity';
 export class CreateUserDto extends User {
   @IsNotEmpty()
   @IsString()
-  @MinLength(3, {
+  @MinLength(8, {
     message:
       'O nome completo do usuário dever ter pelos menos $constraint1 caracteres.',
+  })
+  @MaxLength(64, {
+    message:
+      'O nome completo do usuário dever ter no máximo $constraint1 caracteres.',
   })
   fullName: string;
 
@@ -28,12 +37,18 @@ export class CreateUserDto extends User {
   @MinLength(6, {
     message: 'O nome de usuário dever ter pelos menos $constraint1 caracteres.',
   })
+  @MaxLength(24, {
+    message: 'O nome de usuário dever ter no máximo $constraint1 caracteres.',
+  })
   username: string;
 
   @IsNotEmpty()
   @IsString()
-  @MinLength(6, {
+  @MinLength(8, {
     message: 'A senha deve conter no mínimo $constraint1 caracteres',
+  })
+  @MaxLength(24, {
+    message: 'A senha deve conter no máximo $constraint1 caracteres',
   })
   password: string;
 
@@ -46,11 +61,12 @@ export class CreateUserDto extends User {
 
   @IsNotEmpty()
   @IsString()
+  @IsDateString()
   birthdate?: string;
 
   @IsOptional()
   @IsString()
-  @MinLength(11, {
+  @Length(11, 11, {
     message:
       'O número de telefone deve conter no mínimo $constraint1 caracteres',
   })
