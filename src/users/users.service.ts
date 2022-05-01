@@ -1,9 +1,12 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './entities/user.entity';
 
 const SALT_ROUNDS = 10;
 
@@ -23,7 +26,32 @@ export class UsersService {
     updatedAt: true,
   };
 
-  create(createUserDto: CreateUserDto) {
+  private async _verifyUserExists(createUserDto: CreateUserDto) {
+    function composeErrorMessage(identifier: string) {
+      return `Desculpe, mas este
+      ${identifier === 'email' ? 'email' : 'nome de usuário'}
+      já está sendo utilizado.`;
+    }
+
+    const userExists = async (identifier: string) => {
+      const user = await this.prisma.user.findUnique({
+        where: { [identifier]: createUserDto[identifier] },
+      });
+      return !!user;
+    };
+
+    if (await userExists('email')) {
+      throw new ConflictException(composeErrorMessage('email'));
+    }
+
+    if (await userExists('username')) {
+      throw new ConflictException(composeErrorMessage('username'));
+    }
+  }
+
+  async create(createUserDto: CreateUserDto) {
+    await this._verifyUserExists(createUserDto);
+
     const data: CreateUserDto = {
       ...createUserDto,
       password: bcrypt.hashSync(createUserDto.password, SALT_ROUNDS),
