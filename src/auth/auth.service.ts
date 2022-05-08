@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { User } from 'src/users/entities/user.entity';
@@ -22,14 +26,13 @@ export class AuthService {
     return user;
   }
 
-  async validateUser(identifier: string, password: string): Promise<any> {
+  async validateUser(identifier: string, password: string) {
     const user = await this.usersService.findByIdentifier(identifier);
-
-    if (!user) {
-      throw new NotFoundException();
-    }
-
     const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      throw new UnauthorizedException('Usuário ou Senha incorretos!');
+    }
 
     if (user && isMatch) {
       const userWithoutPassword = this.exclude(user, 'password');
@@ -43,7 +46,7 @@ export class AuthService {
     const payload = { email: user.email, sub: user.id };
 
     return {
-      access_token: this.jwtService.sign(payload),
+      token: this.jwtService.sign(payload),
     };
   }
 }
