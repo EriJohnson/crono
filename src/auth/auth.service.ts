@@ -28,18 +28,16 @@ export class AuthService {
 
   async validateUser(identifier: string, password: string) {
     const user = await this.usersService.findByIdentifier(identifier);
-    const isMatch = await bcrypt.compare(password, user.password);
+
+    const isMatch = user && (await bcrypt.compare(password, user.password));
 
     if (!isMatch) {
-      throw new UnauthorizedException('Usuário ou Senha incorretos!');
+      throw new UnauthorizedException('Usuário ou senha incorretos!');
     }
 
-    if (user && isMatch) {
-      const userWithoutPassword = this.exclude(user, 'password');
-      return userWithoutPassword;
-    }
+    const userWithoutPassword = this.exclude(user, 'password');
 
-    return null;
+    return userWithoutPassword;
   }
 
   async login(user: User) {
