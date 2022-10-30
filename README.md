@@ -8,6 +8,19 @@ Back end da aplicação do sistema gerenciamento para o OANSE.
 
 ## Pré-requisitos
 
+## Caso não use Docker:
+
+1. Visite:
+
+[postgresql.org](https://www.postgresql.org/)
+
+2. Na seção de downloads, baixe a versão para o seu sistema operacional e insta-
+   le normalmente.
+
+NÃO PRECISA INSTALAR "stack builder"
+
+## Caso use Docker:
+
 ### Docker
 
 1. Crie o container docker com a imagem do postgres:
@@ -35,7 +48,7 @@ faça uma cópia do arquivo .env.example e renomeie para somente .env e configur
 ## Instalação
 
 ```bash
-yarn install
+npm install
 ```
 
 ```bash
@@ -46,13 +59,13 @@ npx prisma migrate dev
 
 ```bash
 # development
-yarn start
+npm start
 
 # watch mode
-yarn start:dev
+npm start:dev
 
 # production mode
-yarn start:prod
+npm start:prod
 ```
 
 ## Sugestões
