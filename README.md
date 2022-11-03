@@ -2,26 +2,33 @@
   <img src="https://static.wixstatic.com/media/6ea5d4_d4f0f11421144775a811892b8d0d1ff9~mv2.jpg/v1/fill/w_215,h_215,al_c,q_80,usm_0.66_1.00_0.01/Logo%20OANSE.webp" width="320" alt="OANSE Logo" />
 </p>
 
-## Descrição
+# Descrição
 
 Back end da aplicação do sistema gerenciamento para o OANSE.
 
-## Pré-requisitos
+# Pré-requisitos
 
-## Caso não use Docker:
+## 1. Instalar o banco de dados
 
-1. Visite:
+### Caso não use Docker:
 
-[postgresql.org](https://www.postgresql.org/)
+1. Visite: [postgresql.org](https://www.postgresql.org/)
 
-2. Na seção de downloads, baixe a versão para o seu sistema operacional e insta-
-   le normalmente.
+2. Na seção de downloads, baixe a versão para o seu sistema operacional
+   e instale normalmente.
 
-NÃO PRECISA INSTALAR "stack builder"
+   NO SETUP, DESMARQUE A OPÇÃO: "Stack Builder"❗
 
-## Caso use Docker:
+3. Execute o cli do postgres, "SQL Shell (psql)", e crie um banco de dados
+   com o nome: "crono_db".
 
-### Docker
+```bash
+CREATE DATABASE crono_db
+```
+
+4. Vá para o passo 2.
+
+### Caso use Docker:
 
 1. Crie o container docker com a imagem do postgres:
 
@@ -41,34 +48,33 @@ docker start crono-container
 docker exec -i crono-container psql -U postgres -c "CREATE DATABASE crono_db WITH OWNER=postgres;"
 ```
 
-4. Configure o .env:
+## 2. Configurar .env
 
 faça uma cópia do arquivo .env.example e renomeie para somente .env e configure as variáveis conforme os dados de configurações de banco, docker etc.
 
-## Instalação
+## 3. Instalação de dependências
 
 ```bash
 npm install
 ```
 
+## 4. Rodar migrations do banco de dados
+
 ```bash
 npx prisma migrate dev
 ```
 
-## Rodar o projeto
+## 5. Rodar o projeto
 
 ```bash
 # development
-npm start
-
-# watch mode
-npm start:dev
+npm run dev
 
 # production mode
-npm start:prod
+npm run prod
 ```
 
-## Sugestões
+# Sugestões
 
 [Prisma Studio](https://www.prisma.io/studio): Uma interface visual para gerenciar o banco de dados.
 
