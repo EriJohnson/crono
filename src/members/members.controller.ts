@@ -9,6 +9,8 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { Role } from '@prisma/client';
+import { Roles } from 'src/roles/roles.decorator';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
 import { MembersService } from './members.service';
@@ -17,6 +19,7 @@ import { MembersService } from './members.service';
 export class MembersController {
   constructor(private readonly membersService: MembersService) {}
 
+  @Roles([Role.DEACON, Role.ADMIN, Role.DIRECTOR])
   @Post()
   create(@Body() createMemberDto: CreateMemberDto) {
     return this.membersService.create(createMemberDto);
@@ -37,6 +40,7 @@ export class MembersController {
     return this.membersService.update(id, updateMemberDto);
   }
 
+  @Roles([Role.DEACON, Role.ADMIN, Role.DIRECTOR])
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string) {
