@@ -20,10 +20,12 @@ Back end da aplicação do sistema gerenciamento para o OANSE.
    NO SETUP, DESMARQUE A OPÇÃO: "Stack Builder"❗
 
 3. Execute o cli do postgres, "SQL Shell (psql)", e crie um banco de dados
-   com o nome: "crono_db".
+   com o nome: "crono_db". OBS.: Não esqueça de colocar ponto e vírgula em comandos SQL!
+
+
 
 ```bash
-CREATE DATABASE crono_db
+CREATE DATABASE crono_db;
 ```
 
 4. Vá para o passo 2.
