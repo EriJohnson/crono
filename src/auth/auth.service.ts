@@ -15,7 +15,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  //Exclude keys from user
+  // Exclude keys from user
   private exclude<User, Key extends keyof User>(
     user: User,
     ...keys: Key[]
@@ -43,7 +43,15 @@ export class AuthService {
   async login(user: User) {
     const payload = { email: user.email, sub: user.id, role: user.role };
 
+    const { fullName, id, club, role } = user;
+
     return {
+      user: {
+        fullName,
+        id,
+        club,
+        role,
+      },
       token: this.jwtService.sign(payload),
     };
   }
