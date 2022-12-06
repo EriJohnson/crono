@@ -3,6 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { Role } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from 'src/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -91,5 +92,14 @@ export class UsersService {
 
   remove(id: string) {
     return this.prisma.user.delete({ where: { id } });
+  }
+
+  findAllByRole(role: Role) {
+    role = role.toUpperCase() as Role;
+
+    return this.prisma.user.findMany({
+      select: this._userData,
+      where: { role },
+    });
   }
 }

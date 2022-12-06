@@ -49,4 +49,10 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
   }
+
+  @Roles(Role.DEACON, Role.ADMIN)
+  @Get('role/:role')
+  findAllByRole(@Param('role') role: Role) {
+    return this.usersService.findAllByRole(role);
+  }
 }
